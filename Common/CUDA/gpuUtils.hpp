@@ -11,7 +11,7 @@ int GetGpuCount();
 //! @param [in] iIdCountMax. Return value of GetGpuCount() 
 int GetGpuIdArray(const char* kacGPUName, int* piDeviceIds, int iIdCountMax, char* pcMessage);
 
-//! @brief GPU name of index iDeviceId. Allocate 128bytes for pcName before call.
+//! @brief GPU name of index iDeviceId. Allocate 256 bytes for pcName before call.
 void GetGpuName(int iDeviceId, char* pcName);
 
 #endif  // GPUUTILS_HPP

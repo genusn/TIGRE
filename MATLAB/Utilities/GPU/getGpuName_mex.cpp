@@ -21,7 +21,7 @@ void mexFunction(int  nlhs , mxArray *plhs[],
         iId = *((int*)mxGetData(prhs[0]));
     }
 	int iCount = GetGpuCount();
-    char* pcName = (char*)mxCalloc(128, sizeof(char));
+    char* pcName = (char*)mxCalloc(256, sizeof(char));
     if (iId < iCount) {
         GetGpuName(iId, pcName);
     }

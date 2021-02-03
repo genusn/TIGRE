@@ -57,7 +57,7 @@ int GetGpuIdArray(const char* kacGPUName, int* piDeviceIds, int iIdCountMax, cha
 }
 
 void GetGpuName(int iDeviceId, char* pcName) {
-    memset(pcName, 0, 128);
+    memset(pcName, 0, 256);
     cudaError_t err = cudaSuccess;
     cudaDeviceProp propDevice;
     err = cudaGetDeviceProperties(&propDevice, iDeviceId);

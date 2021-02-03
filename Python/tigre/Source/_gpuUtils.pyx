@@ -46,7 +46,7 @@ def getGpuIdList(nameGPU = ""):
 
 def getGpuName(iDeviceId = 0):
     # print("iDeviceId = {}".format(iDeviceId))
-    cdef char* pcDeviceName    = <char*> malloc(128* sizeof(char))
+    cdef char* pcDeviceName    = <char*> malloc(256 * sizeof(char))
     GetGpuName(iDeviceId, pcDeviceName)
     return (<bytes>pcDeviceName).decode('utf-8')
 
