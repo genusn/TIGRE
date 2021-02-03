@@ -34,11 +34,14 @@ int GetGpuIdArray(const char* kacGPUName, int* piDeviceIds, int iIdCountMax, cha
         return iCudaDeviceCount;
     }
 
-    cudaError_t err;
+    cudaError_t err = cudaSuccess;
     cudaDeviceProp propDevice;
     int nMatch = 0;
     for (int iId = 0; iId < iCudaDeviceCount; ++iId) {
         err = cudaGetDeviceProperties(&propDevice, iId);
+        if (err != cudaSuccess) {
+            printf("cudaGetDeviceProperties(&prop, device = %d) did not returned cudaSuccess.\n", iId);
+        }
         iMessagePos += sprintf(pcMessage + iMessagePos, "propDevice.name = %s\n", propDevice.name);
         if (strcmp(propDevice.name, kacGPUName) == 0) {
             piDeviceIds[nMatch] = iId;
@@ -55,10 +58,12 @@ int GetGpuIdArray(const char* kacGPUName, int* piDeviceIds, int iIdCountMax, cha
 
 void GetGpuName(int iDeviceId, char* pcName) {
     memset(pcName, 0, 128);
-    cudaError_t err;
+    cudaError_t err = cudaSuccess;
     cudaDeviceProp propDevice;
-    int id = iDeviceId;
-    err = cudaGetDeviceProperties(&propDevice, id);
+    err = cudaGetDeviceProperties(&propDevice, iDeviceId);
+    if (err != cudaSuccess) {
+        printf("cudaGetDeviceProperties(&prop, device = %d) did not returned cudaSuccess.\n", iDeviceId);
+    }
     memcpy(pcName, propDevice.name, strlen(propDevice.name)*sizeof(char));
 }
 
